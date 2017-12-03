@@ -10,7 +10,6 @@ class GiroCair extends AUTH_Controller {
 		$this->load->model('M_tempGiro');
 		$this->load->model('M_bank');
 		echo "Testing Update Github";
-
 	}
 
 	public function index() {

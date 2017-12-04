@@ -62,13 +62,16 @@ public function updateReturPjl() {
 	$data['dataStock'] 	= $this->M_stock->select_all();
 	$data['dataSatuan'] 	= $this->M_satuan->select_all();
 
-
 	echo show_my_modal('modals/retur_penjualan/modal_update_returpjl', 'update-returpjl', $data);
 }
 
 public function prosesUpdateReturPjl() {
 		$data 	= $this->input->post();
 		$this->M_penjualan->update($data);
+}
+
+public function save() {
+
 }
 
 }

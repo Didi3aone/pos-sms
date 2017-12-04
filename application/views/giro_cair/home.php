@@ -1,3 +1,39 @@
+<script>
+function nextfield(event){
+    if(event.keyCode == 13 || event.which == 13){
+  document.getElementById('no_bukti').focus();
+    }
+}
+function nextfield2(event){
+    if(event.keyCode == 13 || event.which == 13){
+  document.getElementById('jatuh_tempo').focus();
+    }
+}
+function nextfield3(event){
+    if(event.keyCode == 13 || event.which == 13){
+  document.getElementById('jumlah').focus();
+    }
+}
+function nextfield4(event){
+    if(event.keyCode == 13 || event.which == 13){
+  document.getElementById('bank').focus();
+    }
+}
+
+var tabindex = 0;
+
+function next(){
+   var tab = document.getElementsByClassName("tambah");
+    tab[tabindex].focus();
+    if(tabindex == tab.length -1){
+                tabindex = 0;
+    }
+    else{
+        tabindex ++;
+    }
+}
+</script>
+
 <div class="box">
   <div class="box-header">
     <div id="notifications"><?php echo $this->session->flashdata('msg'); ?></div>
@@ -42,7 +78,7 @@
         <span class="input-group-addon">
           <i class="glyphicon glyphicon-option-horizontal"></i>
         </span>
-      <textarea name="keterangan" id="text" cols="50" rows="5" class="form-control" style="width:300px;"></textarea>
+      <textarea name="keterangan" id="keterangan" onkeypress="nextfield(event)" cols="50" rows="5" class="form-control" style="width:300px;"></textarea>
       </div>
 
   <script>
@@ -57,7 +93,7 @@
           });
   });
   </script>
-  
+
   </form>
 
   <script>
@@ -75,10 +111,10 @@
     $i++; } ?>
     <input type="text" class="form-control" value=<?= $i ?> name="nomor" id="nomor" style="width:50px;">
 
-    <input type="text" class="form-control" placeholder="Nomor Bukti" name="no_bukti" id="no_bukti" style="width:203px;">
-    <input type="text" class="form-control" id="jatuh_tempo" name="jatuh_tempo" placeholder="Jatuh Tempo" style="width:203px;">
-    <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" style="width:203px;">
-    <select id="bank" name="bank" class="form-control select2" aria-describedby="sizing-addon2" style="width:203px;">
+    <input type="text" onkeypress="nextfield2(event)" class="form-control" placeholder="Nomor Bukti" name="no_bukti" id="no_bukti" style="width:203px;">
+    <input type="text" onkeypress="nextfield3(event)" class="form-control" id="jatuh_tempo" name="jatuh_tempo" placeholder="Jatuh Tempo" style="width:203px;">
+    <input type="text" onkeypress="nextfield4(event)" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" style="width:203px;">
+    <select id="bank" onkeypress="next()" name="bank" class="form-control select2" aria-describedby="sizing-addon2" style="width:203px;">
       <option value=""></option>
        <?php
        foreach ($dataBank as $bank) {
@@ -121,7 +157,7 @@
 </table>
 </div>
 <hr>
-<button class="btn btn btn-success btn-block" onClick="inputTambah()" type="button"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack"></a>
+<button class="btn btn btn-success btn-block" onClick="inputTambah()" id="tambah" type="button"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack"></a>
 <button class="btn btn-danger btn-block" onClick="hapusInput()" type="button"><i class="glyphicon glyphicon-trash"></i> Hapus</button><a id="ackDel"></a>
 </form>
 <hr />

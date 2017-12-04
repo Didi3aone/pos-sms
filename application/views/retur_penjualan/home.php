@@ -73,11 +73,6 @@
 <textarea name="keterangan" id="text" cols="50" rows="5" placeholder="Keterangan" class="form-control" style="width:300px;"></textarea>
 </div>
 </form>
-<script>
-function simpanTransaksi() {
-    document.getElementById("formPembelian").submit();
-}
-</script>
 
 <form id="formTambah" action="" method="post" name="inputTabel">
 <div class="input-group form-group">
@@ -250,6 +245,22 @@ function hitungDiskon(){
 <button onclick="simpanTransaksi()" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-floppy-saved"></i> Simpan</button>
 <hr />
 </div>
+
+<script>
+function simpanTransaksi(){
+
+      $.ajax({
+      url: "<?php echo site_url('ReturPenjualan/save');?>",
+      type: 'POST',
+      cache: false,
+      success: function(html) {
+      $("div#ackDiskon").html(html);
+      }
+      });
+      return false;
+}
+</script>
+
 
 <!-- Modal Pencarian -->
 <div class="modal fade" id="modalCari" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

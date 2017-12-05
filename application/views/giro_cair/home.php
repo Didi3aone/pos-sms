@@ -20,18 +20,15 @@ function nextfield4(event){
     }
 }
 
-var tabindex = 0;
-
-function next(){
-   var tab = document.getElementsByClassName("tambah");
-    tab[tabindex].focus();
-    if(tabindex == tab.length -1){
-                tabindex = 0;
+function nextfield5(event){
+$(document).on('keypress', 'select', function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+        document.getElementById('tambahBtn').focus();
     }
-    else{
-        tabindex ++;
-    }
+});
 }
+
 </script>
 
 <div class="box">
@@ -114,7 +111,7 @@ function next(){
     <input type="text" onkeypress="nextfield2(event)" class="form-control" placeholder="Nomor Bukti" name="no_bukti" id="no_bukti" style="width:203px;">
     <input type="text" onkeypress="nextfield3(event)" class="form-control" id="jatuh_tempo" name="jatuh_tempo" placeholder="Jatuh Tempo" style="width:203px;">
     <input type="text" onkeypress="nextfield4(event)" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" style="width:203px;">
-    <select id="bank" onkeypress="next()" name="bank" class="form-control select2" aria-describedby="sizing-addon2" style="width:203px;">
+    <select id="bank" onkeypress="nextfield5(event)" name="bank" class="form-control select2" aria-describedby="sizing-addon2" style="width:350px;">
       <option value=""></option>
        <?php
        foreach ($dataBank as $bank) {
@@ -157,7 +154,7 @@ function next(){
 </table>
 </div>
 <hr>
-<button class="btn btn btn-success btn-block" onClick="inputTambah()" id="tambah" type="button"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack"></a>
+<button class="btn btn btn-success btn-block" onClick="inputTambah()" id="tambahBtn" type="button"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack"></a>
 <button class="btn btn-danger btn-block" onClick="hapusInput()" type="button"><i class="glyphicon glyphicon-trash"></i> Hapus</button><a id="ackDel"></a>
 </form>
 <hr />

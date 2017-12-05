@@ -22,11 +22,9 @@
            var input=document.forms['frmPenjualan']['supplier'].value;
            var outputKode = document.getElementById("kd_supplier");
            outputKode.value = input;
-
            var input2=document.forms['frmPenjualan']['salesman'].value;
            var outputKode2 = document.getElementById("kd_salesman");
            outputKode2.value = input2;
-
            var input3=document.forms['frmPenjualan']['customer'].value;
            var outputKode3 = document.getElementById("kd_customer");
            outputKode3.value = input3;
@@ -291,10 +289,8 @@ function simpanTransaksi() {
 
       <script>
       function terimaInputTambah(){
-
         var i, j;
         var loopingNo = document.getElementById("noUrut");
-
             $.ajax({
             url: "<?php echo site_url('Penjualan/prosesTambah');?>",
             type: 'POST',
@@ -314,22 +310,18 @@ function simpanTransaksi() {
              $("#idLooping").load( "<?php echo base_url('Penjualan')?> #idLooping" );
              }
             });
-
             j=Number(document.forms['inputTabel']['noUrut'].value)+1;
             //window.alert(j);
             for(i=1; i<=j; i++) {
               loopingNo.value = i;
             }
-
             return false;
             //setInterval(function(){realoadTabel()},1000);
-
       }
       </script>
 
       <script>
       function hapusInput(){
-
         var setNum, num = document.getElementById("noUrut");
         var r = confirm("Anda yakin menghapus data pembelian terakhir?");
         if (r == true) {
@@ -344,11 +336,9 @@ function simpanTransaksi() {
            $("#tot").load( "<?php echo base_url('Penjualan')?> #tot" );
            }
           });
-
           setNum = Number(document.forms['inputTabel']['noUrut'].value)-1;
           num.value = setNum;
           return false;
-
           }
       }
       </script>
@@ -387,7 +377,6 @@ function simpanTransaksi() {
         var diskonRp, diskon = $("#disc").val();
         var setDiskonRp = document.getElementById("disc_rp");
         var updateTotal, total = document.getElementById("total");
-
             $.ajax({
             url: "<?php echo site_url('Penjualan/index');?>",
             type: 'POST',
@@ -397,7 +386,6 @@ function simpanTransaksi() {
             //$("#diskon").load( "<?php echo base_url('Penjualan')?> #diskon" );
             }
             });
-
             $("#sub_tot").load( "<?php echo base_url('Penjualan')?> #sub_tot" );
             diskonRp = Number($("#sub_total").val()*diskon);
             setDiskonRp.value = diskonRp;
@@ -424,25 +412,20 @@ function simpanTransaksi() {
       <script type="text/javascript">
       var save_method;
       var setNum, num = document.getElementById("noUrut");
-
       function inputByText()
       {
-
     save_method = 'add';
     $('#formInputByText')[0].reset(); // reset form on modals
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modalInputbyText').modal('show'); // show bootstrap modal
     }
-
     function addByText()
 {
     //$('#btnAdd').text('Inputing...'); //change button text
     var isiInput, hitungHastag;
-
     $('#btnAdd').attr('disabled',true); //set button disable
     var url;
-
     if(save_method == 'add') {
         url = "<?php echo site_url('Penjualan/ajax_addByText')?>";
     }
@@ -477,22 +460,17 @@ function simpanTransaksi() {
                     $('[name="'+data.inputerror[i]+'"]').next().text(data.error_string[i]); //select span help-block class set text error string
                 }
             }
-
             //$('#btnAdd').text('Prosesing'); //change button text
             $('#btnAdd').attr('disabled',false); //set button enable
-
-
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
             alert('Error adding input text');
             $('#btnAdd').text('Prosesing'); //change button text
             $('#btnAdd').attr('disabled',false); //set button enable
-
         }
     });
 }
-
       </script>
       <hr />
       <div class="col-md-4 text-left">
@@ -574,19 +552,16 @@ function simpanTransaksi() {
 <?php show_my_confirm('konfirmasiHapus', 'hapus-dataPinSup', 'Anda yakin menghapus data ini?', 'Ya'); ?>
 
 <script type="text/javascript">
-
 function effect_msg_form() {
   // $('.form-msg').hide();
   $('.form-msg').show(1000);
   setTimeout(function() { $('.form-msg').fadeOut(1000); }, 3000);
 }
-
 function effect_msg() {
   // $('.msg').hide();
   $('.msg').show(1000);
   setTimeout(function() { $('.msg').fadeOut(1000); }, 3000);
 }
-
 var MyTable = $('#lookupCari').dataTable({
     "paging": true,
     "lengthChange": true,
@@ -595,19 +570,16 @@ var MyTable = $('#lookupCari').dataTable({
     "info": true,
     "autoWidth": false
   });
-
 function refresh() {
   MyTable = $('#lookupCari').dataTable();
   $("#table_content_cari").load( "<?php echo base_url('Penjualan')?> #table_content_cari" );
 }
-
 var id_jual;
 $(document).on("click", ".konfirmasiHapus-jual", function() {
   id_jual = $(this).attr("data-id");
 })
 $(document).on("click", ".hapus-dataJual", function() {
   var id = id_jual;
-
   $.ajax({
     method: "POST",
     url: "<?php echo base_url('Penjualan/deleteTransaksi'); ?>",
@@ -620,13 +592,10 @@ $(document).on("click", ".hapus-dataJual", function() {
     // refresh();
     // $('#modalCari').modal('show');
     //$('#lookupCari').dataTable().ajax.reload();
-
   })
 })
-
 $(document).on("click", ".update-dataJual", function() {
   var id = $(this).attr("data-id");
-
   $.ajax({
     method: "POST",
     url: "<?php echo base_url('Penjualan/updateTransaksi'); ?>",
@@ -638,10 +607,8 @@ $(document).on("click", ".update-dataJual", function() {
     $('#update-jual').modal('show');
   })
 })
-
 $(document).on('submit', '#form-update-jual', function(e){
   var data = $(this).serialize();
-
   $.ajax({
     method: 'POST',
     url: '<?php echo base_url('Penjualan/prosesUpdateTransaksi'); ?>',
@@ -655,14 +622,11 @@ $(document).on('submit', '#form-update-jual', function(e){
       // MyTable.fnDestroy();
       // refresh();
       // $('#modalCari').modal('show');
-
       //refresh();
       //$('#lookupCari').dataTable().ajax.reload();
   })
-
   e.preventDefault();
 });
-
 </script>
 
 

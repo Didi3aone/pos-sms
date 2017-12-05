@@ -34,9 +34,6 @@
                                 </span>
                             </a>
                             <ul class="treeview-menu">
-                                <li <?php if ($page == 'jenis_usaha') {echo 'class="active"';} ?>><a href="<?php echo base_url('JenisUsaha'); ?>"><i class="fa fa-circle-o"></i> Master Jenis Usaha</a></li>
-                                <li <?php if ($page == 'kota') {echo 'class="active"';} ?>><a href="<?php echo base_url('Kota'); ?>"><i class="fa fa-circle-o"></i> Master Kota</a></li>
-                                <li <?php if ($page == 'gudang') {echo 'class="active"';} ?>><a href="<?php echo base_url('Gudang'); ?>"><i class="fa fa-circle-o"></i> Master Gudang</a></li>
                             </ul>
                         </li>
 

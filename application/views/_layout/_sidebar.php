@@ -144,7 +144,6 @@
                                               <ul class="treeview-menu">
                                                   <li <?php if ($page == 'pembelian') {echo 'class="active"';} ?>><a href="<?php echo base_url('Pembelian'); ?>"><i class="fa fa-circle-o"></i> Pembelian</a></li>
                                                   <li <?php if ($page == 'pembayaran_hutang_pembelian') {echo 'class="active"';} ?>><a href="<?php echo base_url('PembayaranHutangPembelian'); ?>"><i class="fa fa-circle-o"></i> Pembayaran Hutang Beli</a></li>
-                                                  <li <?php if ($page == 'testing') {echo 'class="active"';} ?>><a href="<?php echo base_url('Testing'); ?>"><i class="fa fa-circle-o"></i> Testing</a></li>
                                                   <li <?php if ($page == 'penjualan') {echo 'class="active"';} ?>><a href="<?php echo base_url('Penjualan'); ?>"><i class="fa fa-circle-o"></i> Penjualan</a></li>
                                                   <li <?php if ($page == 'loading_barang') {echo 'class="active"';} ?>><a href="<?php echo base_url('LoadingBarang'); ?>"><i class="fa fa-circle-o"></i> Loading Barang</a></li>
                                                   <li <?php if ($page == 'konfirmasi_faktur_kembali') {echo 'class="active"';} ?>><a href="<?php echo base_url('KonfirmasiFakturKembali'); ?>"><i class="fa fa-circle-o"></i> Konfirmasi Faktur Kembali</a></li>

@@ -10,7 +10,6 @@ class Penjualan extends AUTH_Controller {
 		$this->load->model('M_gudang');
 		$this->load->model('M_temp3','',true);
 		$this->load->model('M_admin');
-		$this->load->model('M_testing');
 		$this->load->model('M_salesman');
 		$this->load->model('M_customer');
 		/*

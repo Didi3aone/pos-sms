@@ -1,0 +1,747 @@
+<div class="msg" style="display:none;">
+  <?php echo @$this->session->flashdata('msg'); ?>
+</div>
+<div class="box">
+  <div class="box-header">
+    <script>  
+function prosesTambah(){
+  // var kd_sales = document.forms['frmTarget']['kd_sales'].value;
+  // var jenis = document.forms['frmTarget']['jenis'].value;
+
+    $.ajax({
+      method: 'POST',
+      url: '<?php echo base_url('Target1/prosesTambah'); ?>',
+      data: {
+              "kd_sales": $(document.forms['frmTarget']['kd_sales'].value).val(),
+              "jenis": $(document.forms['frmTarget']['jenis'].value).val(), 
+              "target'": $("#target").val(),
+              "bobot":$("#bobot").val(),
+              "target1": $("#target1").val(),
+              "satuan1": $("#satuan1").val(), 
+              "target2'": $("#target2").val(),
+              "satuan2":$("#satuan2").val(),
+              "target3": $("#target3").val(),
+              "satuan3": $("#satuan3").val(), 
+              "target4'": $("#target4").val(),
+              "satuan4":$("#satuan4").val(),
+              "bobot4": $("#bobot4").val(),
+              "targetEC": $("#targetEC").val(), 
+              "bobotEC'": $("#bobotEC").val(),
+              "targetOA":$("#targetOA").val(),
+              "bobotOA": $("#bobotOA").val(),
+              "targetAR": $("#targetAR").val(), 
+              "bobotAR'": $("#bobotAR").val()
+            }
+    })
+  
+}
+
+function terimainputCombox1(){
+           var input=document.forms['frmTarget']['salesman'].value;
+           var outputKode = document.getElementById("kd_sales");
+           var outputAlamat = document.getElementById("alamat");
+           var hasil = input.split(","); 
+           outputAlamat.value = hasil[1];
+           outputKode.value = hasil[0];
+}
+
+//js target 1  
+function comboTarget1(){
+           var input=document.forms['inputTabel']['nama_kode_barang1'].value;
+           var outputKode = document.getElementById("kode1");
+           var outputBarang = document.getElementById("nama_barang1");
+           // var outputSatuan1 = document.getElementById("satuan1_1");
+           // var outputSatuan2 = document.getElementById("satuan2_1");
+           // var outputSatuan3 = document.getElementById("satuan3_1");
+            var hasil = input.split(",");
+           outputKode.value = hasil[0];
+           outputBarang.value = hasil[1];
+           // outputSatuan1.value = hasil[2];
+           // outputSatuan2.value = hasil[3];
+           // outputSatuan3.value = hasil[4];          
+}
+
+function terimainput1(){
+        var i, j;
+        var loopingNo = document.getElementById("no1");
+
+            $.ajax({
+            url: "<?php echo site_url('Target1/prosesTambah_temp1');?>",
+            type: 'POST',
+            data: {
+              "kode1": $("#kode1").val(), "nama_barang1": $("#nama_barang1").val(), "no1": $("#no1").val(),
+              "kd_sales":$("#kd_sales").val()
+            },
+             success: function(data) {
+             $("div#ack").html(data);
+             }
+            });
+
+            <?php
+              //$no = 1;
+              foreach ($dataTemp1 as $temp1) {
+                ?>
+                var no1=document.forms['inputTabel']['no1'].value;
+                var kode1=document.forms['inputTabel']['kode1'].value;
+                var namaBarang1=document.forms['inputTabel']['nama_barang1'].value;
+                // var satuan1_1=document.forms['inputTabel']['satuan1_1'].value;
+                // var satuan2_1=document.forms['inputTabel']['satuan2_1'].value;
+                // var satuan3_1=document.forms['inputTabel']['satuan3_1'].value;
+                <?php
+                //$no++;
+                }
+                ?>
+
+             var tabel = document.getElementById("tabelinput");
+             var row = tabel.insertRow(1);
+             var cell0 = row.insertCell(0);
+             var cell1 = row.insertCell(1);
+             var cell2 = row.insertCell(2);
+             
+             cell0.innerHTML = no1;
+             cell1.innerHTML = kode1;
+             cell2.innerHTML = namaBarang1;
+             
+            j=Number(document.forms['inputTabel']['no1'].value)+1;
+            //window.alert(j);
+            for(i=1; i<=j; i++) {
+              loopingNo.value = i;
+            }
+            //setInterval(function(){realoadTabel()},1000);
+      }
+
+//js target2
+function comboTarget2(){
+           var input=document.forms['inputTabel2']['nama_kode_barang2'].value;
+           var outputKode = document.getElementById("kode2");
+           var outputBarang = document.getElementById("nama_barang2");
+           var hasil = input.split(",");
+           outputBarang.value = hasil[1];
+           outputKode.value = hasil[0];
+           
+}
+
+function terimainput2(){
+        var i, j;
+        var loopingNo = document.getElementById("no2");
+
+            $.ajax({
+            url: "<?php echo site_url('Target1/prosesTambah_temp2');?>",
+            type: 'POST',
+            data: {
+              "kode2": $("#kode2").val(), "nama_barang2": $("#nama_barang2").val(), "no2": $("#no2").val(),
+              "kd_sales":$("#kd_sales").val()},
+             success: function(data) {
+             $("div#ack2").html(data);
+             }
+            });
+
+            <?php
+              //$no = 1;
+              foreach ($dataTemp2 as $temp2) {
+                ?>
+                var no2=document.forms['inputTabel2']['no2'].value;
+                var kode2=document.forms['inputTabel2']['kode2'].value;
+                var namaBarang2=document.forms['inputTabel2']['nama_barang2'].value;
+                <?php
+                //$no++;
+                }
+                ?>
+
+             var tabel = document.getElementById("tabelinput2");
+             var row = tabel.insertRow(1);
+             var cell0 = row.insertCell(0);
+             var cell1 = row.insertCell(1);
+             var cell2 = row.insertCell(2);
+             
+             cell0.innerHTML = no2;
+             cell1.innerHTML = kode2;
+             cell2.innerHTML = namaBarang2;
+             
+            j=Number(document.forms['inputTabel2']['no2'].value)+1;
+            //window.alert(j);
+            for(i=1; i<=j; i++) {
+              loopingNo.value = i;
+            }
+            //setInterval(function(){realoadTabel()},1000);
+      }
+      //js target3
+function comboTarget3(){
+           var input=document.forms['inputTabel3']['nama_kode_barang3'].value;
+           var outputKode = document.getElementById("kode3");
+           var outputBarang = document.getElementById("nama_barang3");
+           var hasil = input.split(",");
+           outputBarang.value = hasil[1];
+           outputKode.value = hasil[0];
+           
+}
+
+function terimainput3(){
+        var i, j;
+        var loopingNo = document.getElementById("no3");
+
+            $.ajax({
+            url: "<?php echo site_url('Target1/prosesTambah_temp3');?>",
+            type: 'POST',
+            data: {
+              "kode3": $("#kode3").val(), "nama_barang3": $("#nama_barang3").val(), "no3": $("#no3").val(),
+              "kd_sales":$("#kd_sales").val()},
+             success: function(data) {
+             $("div#ack3").html(data);
+             }
+            });
+
+            <?php
+              //$no = 1;
+              foreach ($dataTemp3 as $temp3) {
+                ?>
+                var no3=document.forms['inputTabel3']['no3'].value;
+                var kode3=document.forms['inputTabel3']['kode3'].value;
+                var namaBarang3=document.forms['inputTabel3']['nama_barang3'].value;
+                <?php
+                //$no++;
+                }
+                ?>
+
+             var tabel = document.getElementById("tabelinput3");
+             var row = tabel.insertRow(1);
+             var cell0 = row.insertCell(0);
+             var cell1 = row.insertCell(1);
+             var cell2 = row.insertCell(2);
+             
+             cell0.innerHTML = no3;
+             cell1.innerHTML = kode3;
+             cell2.innerHTML = namaBarang3;
+             
+            j=Number(document.forms['inputTabel3']['no3'].value)+1;
+            //window.alert(j);
+            for(i=1; i<=j; i++) {
+              loopingNo.value = i;
+            }
+            //setInterval(function(){realoadTabel()},1000);
+      }
+
+      //js target4
+function comboTarget4(){
+           var input=document.forms['inputTabel4']['nama_kode_barang4'].value;
+           var outputKode = document.getElementById("kode4");
+           var outputBarang = document.getElementById("nama_barang4");
+           var hasil = input.split(",");
+           outputBarang.value = hasil[1];
+           outputKode.value = hasil[0];
+           
+}
+
+function terimainput4(){
+        var i, j;
+        var loopingNo = document.getElementById("no4");
+
+            $.ajax({
+            url: "<?php echo site_url('Target1/prosesTambah_temp4');?>",
+            type: 'POST',
+            data: {
+              "kode4": $("#kode4").val(), "nama_barang4": $("#nama_barang4").val(), "no4": $("#no4").val(),
+              "kd_sales":$("#kd_sales").val()},
+             success: function(data) {
+             $("div#ack4").html(data);
+             }
+            });
+
+            <?php
+              //$no = 1;
+              foreach ($dataTemp4 as $temp4) {
+                ?>
+                var no4=document.forms['inputTabel4']['no4'].value;
+                var kode4=document.forms['inputTabel4']['kode4'].value;
+                var namaBarang4=document.forms['inputTabel4']['nama_barang4'].value;
+                <?php
+                //$no++;
+                }
+                ?>
+
+             var tabel = document.getElementById("tabelinput4");
+             var row = tabel.insertRow(1);
+             var cell0 = row.insertCell(0);
+             var cell1 = row.insertCell(1);
+             var cell2 = row.insertCell(2);
+             
+             cell0.innerHTML = no4;
+             cell1.innerHTML = kode4;
+             cell2.innerHTML = namaBarang4;
+             
+            j=Number(document.forms['inputTabel4']['no4'].value)+1;
+            //window.alert(j);
+            for(i=1; i<=j; i++) {
+              loopingNo.value = i;
+            }
+            //setInterval(function(){realoadTabel()},1000);
+      }
+    </script>
+    <form id="myForm" action="<?=base_url()?>Target1/prosesTambah" method="post" name='frmTarget'>
+    
+      
+
+    <div class="input-group form-group">
+      <span class="input-group-addon">
+        <i class="glyphicon glyphicon-shopping-cart"></i>
+      </span>
+      <select id="salesman" onchange="terimainputCombox1()" name="salesman" class="form-control select2" aria-describedby="sizing-addon2" style="width:210px;">
+        <option value="">- Pilih Salesman -</option>
+          <?php
+          foreach ($dataSalesman as $salesman) {
+            ?>
+            <option value="<?php echo $salesman->Kode; ?>,<?php echo $salesman->Alamat; ?>">
+              <?php echo $salesman->Nama; ?>
+            </option>
+            <?php
+          }
+          ?>
+        </select>
+        <input id="kd_sales" type="text" class="form-control" placeholder="Kode" name="kd_sales" style="width:250px;" readonly>
+    </div>
+
+    <div >
+      <input id="alamat" type="text" class="form-control" placeholder="Alamat" name="alamat" readonly>
+    </div>
+    <div class="input-group form-group">
+    <span class="input-group-addon" id="sizing-addon2">
+      <i class="glyphicon glyphicon-check"></i>
+    </span>
+    <span class="input-group-addon">
+          <input type="radio" name="jenis" value="1" id="BC" class="minimal">
+      <label for="BC">By Customer</label>
+        </span>
+        <span class="input-group-addon">
+          <input type="radio" name="jenis" value="2" id="BQ" class="minimal">
+      <label for="BQ">By Qty</label>
+        </span>
+      </div>
+        
+
+<!-- FORM TARGET 1 -->
+    <form action="<?=base_url()?>Target1/prosesTambah_temp1" method="post" name="inputTabel">
+      <label>target 1</label>
+
+    <div class="input-group form-group">
+      <?php
+        $i = 1; ?>
+        <?php foreach ($dataTemp1 as $temp1) {
+        $i++; } ?>
+    <input type="text" class="form-control" value=<?= $i ?> name="no1" id="no1" style="width:50px;" readonly>
+
+    <select id="nama_kode_barang1" onchange="comboTarget1()" name="nama_kode_barang1" class="form-control select2" aria-describedby="sizing-addon2" style="width:210px;">
+      <option value="">- Pilih Barang -</option>
+       <?php
+       foreach ($dataStock as $stock) {
+         ?>
+         <option value="<?php echo $stock->Kode; ?>,<?php echo $stock->Nama; ?>"          >
+           <?php echo $stock->Nama; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      <input id="nama_barang1" type="hidden" class="form-control" placeholder="nama_barang1" name="nama_barang1" readonly style="width: 80px">
+      <!-- <input id="satuan1_1" type="hidden" class="form-control" placeholder="satuan1_1" name="satuan1_1" readonly style="width: 80px">
+      <input id="satuan2_1" type="hidden" class="form-control" placeholder="satuan2_1" name="satuan2_1" readonly style="width: 80px">
+      <input id="satuan3_1" type="hidden" class="form-control" placeholder="satuan3_1" name="satuan3_1" readonly style="width: 80px"> -->
+      <input id="kode1" type="text" class="form-control" placeholder="Kode" name="kode1" readonly style="width: 210px">
+<button class="btn btn btn-success btn-block" onClick="terimainput1()" type="button" style="width: 210px"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack"></a>
+        
+    </div>
+
+    <div class="table-responsive" style="height:100px; overflow:auto;" id="responsecontainer">
+    <table class="table table-bordered table-striped" id='tabelinput'>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Nama</th>
+            
+        </tr>
+        <thead>
+          <?php
+            $no1 = 1;
+            foreach ($dataTemp1 as $temp1) {
+              ?>
+              <tr>
+                <td><?php echo $no1; ?></td>
+                <td><?php echo $temp1->Kode; ?></td>
+                <td><?php echo $temp1->Nama; ?></td>
+                
+              </tr>
+              <?php
+              $no1++;
+              }
+              ?>
+        </table>
+      </div>
+
+      <hr>
+      
+      <a href="javascript:if(confirm('Anda yakin menghapus data pembelian terakhir?')){document.location='<?php echo base_url();?>Pembelian/delete';}" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
+      </form>
+
+<!-- END FORM TARGET 1 -->
+<!-- FORM TARGET 2 -->
+<form action="<?=base_url()?>Target1/prosesTambah_temp2" method="post" name="inputTabel2">
+      <label>target 2</label>
+
+    <div class="input-group form-group">
+      <?php
+        $i = 1; ?>
+        <?php foreach ($dataTemp2 as $temp2) {
+        $i++; } ?>
+    <input type="text" class="form-control" value=<?= $i ?> name="no2" id="no2" style="width:50px;" readonly>
+
+    <select id="nama_kode_barang2" onchange="comboTarget2()" name="nama_kode_barang2" class="form-control select2" aria-describedby="sizing-addon2" style="width:210px;">
+      <option value="">- Pilih Barang -</option>
+       <?php
+       foreach ($dataStock as $stock) {
+         ?>
+         <option value="<?php echo $stock->Kode; ?>,<?php echo $stock->Nama; ?>">
+           <?php echo $stock->Nama; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      <input id="nama_barang2" type="hidden" class="form-control" placeholder="nama_barang2" name="nama_barang2" readonly style="width: 80px">
+      <input id="kode2" type="text" class="form-control" placeholder="Kode" name="kode2" readonly style="width: 210px">
+<button class="btn btn btn-success btn-block" onClick="terimainput2()" type="button" style="width: 210px"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack2"></a>
+        
+    </div>
+
+    <div class="table-responsive" style="height:100px; overflow:auto;" id="responsecontainer">
+    <table class="table table-bordered table-striped" id='tabelinput2'>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Nama</th>
+            
+        </tr>
+        <thead>
+          <?php
+            $no2 = 1;
+            foreach ($dataTemp2 as $temp2) {
+              ?>
+              <tr>
+                <td><?php echo $no2; ?></td>
+                <td><?php echo $temp2->Kode; ?></td>
+                <td><?php echo $temp2->Nama; ?></td>
+                
+              </tr>
+              <?php
+              $no2++;
+              }
+              ?>
+        </table>
+      </div>
+
+      <hr>
+      
+      <a href="javascript:if(confirm('Anda yakin menghapus data pembelian terakhir?')){document.location='<?php echo base_url();?>Pembelian/delete';}" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
+      </form>
+<!-- END FORM TARGET 2 -->
+<!-- FORM TARGET 3 -->
+<form action="<?=base_url()?>Target1/prosesTambah_temp3" method="post" name="inputTabel3">
+      <label>target 3</label>
+
+    <div class="input-group form-group">
+      <?php
+        $i = 1; ?>
+        <?php foreach ($dataTemp3 as $temp3) {
+        $i++; } ?>
+    <input type="text" class="form-control" value=<?= $i ?> name="no3" id="no3" style="width:50px;" readonly>
+
+    <select id="nama_kode_barang3" onchange="comboTarget3()" name="nama_kode_barang3" class="form-control select2" aria-describedby="sizing-addon2" style="width:210px;">
+      <option value="">- Pilih Barang -</option>
+       <?php
+       foreach ($dataStock as $stock) {
+         ?>
+         <option value="<?php echo $stock->Kode; ?>,<?php echo $stock->Nama; ?>">
+           <?php echo $stock->Nama; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      <input id="nama_barang3" type="hidden" class="form-control" placeholder="nama_barang3" name="nama_barang3" readonly style="width: 80px">
+      <input id="kode3" type="text" class="form-control" placeholder="Kode" name="kode3" readonly style="width: 210px">
+<button class="btn btn btn-success btn-block" onClick="terimainput3()" type="button" style="width: 210px"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack3"></a>
+        
+    </div>
+
+    <div class="table-responsive" style="height:100px; overflow:auto;" id="responsecontainer">
+    <table class="table table-bordered table-striped" id='tabelinput3'>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Nama</th>
+            
+        </tr>
+        <thead>
+          <?php
+            $no3 = 1;
+            foreach ($dataTemp3 as $temp3) {
+              ?>
+              <tr>
+                <td><?php echo $no3; ?></td>
+                <td><?php echo $temp3->Kode; ?></td>
+                <td><?php echo $temp3->Nama; ?></td>
+                
+              </tr>
+              <?php
+              $no3++;
+              }
+              ?>
+        </table>
+      </div>
+
+      <hr>
+      
+      <a href="javascript:if(confirm('Anda yakin menghapus data pembelian terakhir?')){document.location='<?php echo base_url();?>Pembelian/delete';}" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
+      </form>
+
+<!-- END FORM TARGET 3 -->
+<!-- FORM TARGET 4 -->
+
+<form action="<?=base_url()?>Target1/prosesTambah_temp4" method="post" name="inputTabel4">
+      <label>target 4</label>
+
+    <div class="input-group form-group">
+      <?php
+        $i = 1; ?>
+        <?php foreach ($dataTemp4 as $temp4) {
+        $i++; } ?>
+    <input type="text" class="form-control" value=<?= $i ?> name="no4" id="no4" style="width:50px;" readonly>
+
+    <select id="nama_kode_barang4" onchange="comboTarget4()" name="nama_kode_barang4" class="form-control select2" aria-describedby="sizing-addon2" style="width:210px;">
+      <option value="">- Pilih Barang -</option>
+       <?php
+       foreach ($dataStock as $stock) {
+         ?>
+         <option value="<?php echo $stock->Kode; ?>,<?php echo $stock->Nama; ?>">
+           <?php echo $stock->Nama; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      <input id="nama_barang4" type="hidden" class="form-control" placeholder="nama_barang4" name="nama_barang4" readonly style="width: 80px">
+      <input id="kode4" type="text" class="form-control" placeholder="Kode" name="kode4" readonly style="width: 210px">
+<button class="btn btn btn-success btn-block" onClick="terimainput4()" type="button" style="width: 210px"><i class="glyphicon glyphicon-plus"></i> Tambah</button><a id="ack4"></a>
+        
+    </div>
+
+    <div class="table-responsive" style="height:100px; overflow:auto;" id="responsecontainer">
+    <table class="table table-bordered table-striped" id='tabelinput4'>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Kode</th>
+          <th>Nama</th>
+            
+        </tr>
+        <thead>
+          <?php
+            $no4 = 1;
+            foreach ($dataTemp4 as $temp4) {
+              ?>
+              <tr>
+                <td><?php echo $no4; ?></td>
+                <td><?php echo $temp4->Kode; ?></td>
+                <td><?php echo $temp4->Nama; ?></td>
+                
+              </tr>
+              <?php
+              $no4++;
+              }
+              ?>
+        </table>
+      </div>
+
+      <hr>
+      
+      <a href="javascript:if(confirm('Anda yakin menghapus data pembelian terakhir?')){document.location='<?php echo base_url();?>Pembelian/delete';}" class="btn btn-danger btn-block"><i class="glyphicon glyphicon-trash"></i> Hapus</a>
+      </form>
+<!-- END FORM TARGET 4 -->
+<br />
+
+<!--  action="<?=base_url()?>Target1/prosesTambah" method="post" name="frmTambahTarget"> -->
+  <!-- <input id="kode_sales" type="text" class="form-control" placeholder="Kode" name="kode_sales" style="width:250px;" readonly > -->   <div class="input-group form-group">
+
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target value</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target" name="target" aria-describedby="sizing-addon2" style="width: 380px">
+      </span>
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot Target" name="bobot" aria-describedby="sizing-addon2" style="width: 200px"></span>
+      <span><input type="text" class="form-control" aria-describedby="sizing-addon2" style="width: 100px" readonly value="%"></span>
+  </div>
+  <div>
+    <label>product focus</label>
+  </div>
+  <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target 1</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target 1" name="target1" aria-describedby="sizing-addon2" style="width: 200px">
+      </span>
+      <span><select id="satuan1" name="satuan1" class="form-control select2" aria-describedby="sizing-addon2" style="width:200px;">
+      <option value="">- Pilih Satuan -</option>
+       <?php
+       foreach ($dataSatuan as $satuan) {
+         ?>
+         <option value="<?php echo $satuan->Kode; ?>">
+           <?php echo $satuan->Kode; ?> - <?php echo $satuan->Keterangan; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      </span>
+      <!-- <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot Target 1" name="bobot1" aria-describedby="sizing-addon2" style="width: 200px"></span>
+      <span><input type="text" class="form-control" aria-describedby="sizing-addon2" style="width: 100px" readonly value="%"></span> -->
+  </div>
+  <div class="input-group form-group">
+
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target 2</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target 2" name="target2" aria-describedby="sizing-addon2" style="width: 200px">
+      </span>
+      <span><select id="satuan2" name="satuan2" class="form-control select2" aria-describedby="sizing-addon2" style="width:200px;">
+      <option value="">- Pilih Satuan -</option>
+       <?php
+       foreach ($dataSatuan as $satuan) {
+         ?>
+         <option value="<?php echo $satuan->Kode; ?>">
+           <?php echo $satuan->Kode; ?> - <?php echo $satuan->Keterangan; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      </span>
+      <!-- <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot Target 2" name="bobot2" aria-describedby="sizing-addon2" style="width: 200px"></span>
+      <span><input type="text" class="form-control" aria-describedby="sizing-addon2" style="width: 100px" value="%" readonly></span> -->
+  </div>
+  <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target 3</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target 3" name="target3" aria-describedby="sizing-addon2" style="width: 200px">
+      </span>
+      <span><select id="satuan3" name="satuan3" class="form-control select2" aria-describedby="sizing-addon2" style="width:200px;">
+      <option value="">- Pilih Satuan -</option>
+       <?php
+       foreach ($dataSatuan as $satuan) {
+         ?>
+         <option value="<?php echo $satuan->Kode; ?>">
+           <?php echo $satuan->Kode; ?> - <?php echo $satuan->Keterangan; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      </span>
+      <!-- <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot Target 3" name="bobot3" aria-describedby="sizing-addon2" style="width: 200px"></span>
+      <span><input type="text" class="form-control" aria-describedby="sizing-addon2" style="width: 100px" readonly value="%"></span> -->
+  </div>
+  <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target 4</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target 4" name="target4" aria-describedby="sizing-addon2" style="width: 200px">
+      </span>
+      <span><select id="satuan4" name="satuan4" class="form-control select2" aria-describedby="sizing-addon2" style="width:200px;">
+      <option value="">- Pilih Satuan -</option>
+       <?php
+       foreach ($dataSatuan as $satuan) {
+         ?>
+         <option value="<?php echo $satuan->Kode; ?>">
+           <?php echo $satuan->Kode; ?> - <?php echo $satuan->Keterangan; ?>
+         </option>
+         <?php
+         }
+        ?>
+      </select>
+      </span>
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot Target 4" name="bobot4" aria-describedby="sizing-addon2" style="width: 200px"></span>
+      <span><input type="text" class="form-control" readonly value="%" aria-describedby="sizing-addon2" style="width: 100px"></span>
+  </div>
+  <div><label></label></div>
+  <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target EC</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target EC" name="targetEC" aria-describedby="sizing-addon2" style="width: 400px">
+      </span>
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot EC" name="bobotEC" aria-describedby="sizing-addon2" style="width: 300px"></span>
+  </div>
+  <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target OA</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target OA" name="targetOA" aria-describedby="sizing-addon2" style="width: 400px">
+      </span>
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot OA" name="bobotOA" aria-describedby="sizing-addon2" style="width: 300px"></span>
+  </div>
+  <div class="input-group form-group">
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>target AR</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Target AR" name="targetAR" aria-describedby="sizing-addon2" style="width: 400px">
+      </span>
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>bobot</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Bobot AR" name="bobotAR" aria-describedby="sizing-addon2" style="width: 300px"></span>
+  </div>
+  <div class="input-group form-group">
+      
+      <span class="input-group-addon" id="sizing-addon2">
+        <label>Total</label>
+      </span>
+      <span><input type="text" class="form-control" placeholder="Total" name="total" aria-describedby="sizing-addon2" style="width: 400px"></span>
+  </div>
+
+<div class="col-md-4 text-left">
+  <a href="<?php echo base_url();?>Pembelian/tambahBaru" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-file"></i> Baru</a>
+</div>
+<div class="col-md-4 text-left">
+<a href="<?php echo base_url();?>Pembelian/testing/<?php echo "12310135"?>" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-search"></i> Cari</a>
+</div>
+<div class="col-md-4 text-right">
+<button onclick="prosesTambah()" class="btn btn-primary btn-block"><i class="glyphicon glyphicon-floppy-saved"></i> Simpan</button>
+</form>
+</div>
+  </div>
+  <div>
+    asdasdadadadadadsasdasdasd
+  </div>
+</div>

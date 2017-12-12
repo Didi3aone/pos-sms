@@ -25,4 +25,21 @@ class M_stock extends CI_Model {
 		return $data->result();
 	}
 
+	public function getBrand(){
+		$sql = "SELECT a.Kode AS Kode,
+						a.Keterangan AS Merk,
+						b.Merk AS StockKode
+					FROM merk a, stock b WHERE a.Kode = b.merk LIMIT 1";
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
+	public function getKodeBrand($brandKode) {
+		$sql = "SELECT Keterangan AS Brand FROM merk WHERE Kode = '{$brandKode}'";
+		$data = $this->db->query($sql);
+
+		return $data->result();
+	}
+
 }

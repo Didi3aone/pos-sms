@@ -93,11 +93,11 @@ $(document).on('keypress', 'select', function (e) {
 
   </form>
 
-  <script>
+  <!-- <script>
   function simpanTransaksi() {
       document.getElementById("formGiro").submit();
   }
-  </script>
+  </script> -->
 
 
 <form id="formTambah" action="" method="post" name="tabelInput">
@@ -126,17 +126,17 @@ $(document).on('keypress', 'select', function (e) {
     </div>
 
 <div class="table-responsive" style="height:250px; overflow:auto;" id="table_content">
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped" id="table">
   <thead>
     <tr>
-      <th>No</th>
+      <!-- <th>No</th> -->
       <th>Nomor Bukti</th>
       <th>Jatuh Tempo</th>
       <th>Jumlah</th>
       <th>Bank</th>
     </tr>
     <thead>
-    <?php
+    <!-- <?php
       $no = 1;
       foreach ($dataTempGiro as $tempGiro) {
         ?>
@@ -150,7 +150,7 @@ $(document).on('keypress', 'select', function (e) {
          <?php
         $no++;
         }
-        ?>
+        ?> -->
 </table>
 </div>
 <hr>
@@ -173,34 +173,57 @@ todayHighlight: true,
 </script>
 
 <script>
+  
+  var a=document.forms['tabelInput']['no_bukti'].value;
+       var b=document.forms['tabelInput']['jatuh_tempo'].value;
+       var c=document.forms['tabelInput']['jumlah'].value;
+       var d=document.forms['tabelInput']['bank'].value;
+
 function inputTambah(){
+       var tabel = document.getElementById("table");
+       var row = tabel.insertRow(1);
+       var cell1 = row.insertCell(0);
+       var cell2 = row.insertCell(1);
+       var cell3 = row.insertCell(2);
+       var cell4 = row.insertCell(3);
 
-  var i, j;
-  var loopingNo = document.getElementById("nomor");
+       cell1.innerHTML = a;
+       cell2.innerHTML = b;
+       cell3.innerHTML = c;
+       cell4.innerHTML = d;
 
-      $.ajax({
+
+  // var i, j;
+  // var loopingNo = document.getElementById("nomor");
+}
+
+      function simpanTransaksi() {
+        
+        $.ajax({
       url: "<?php echo site_url('GiroCair/prosesTambah');?>",
       type: 'POST',
       cache: false,
       data: {
-      "no_bukti": $("#no_bukti").val(), "jatuh_tempo": $("#jatuh_tempo").val(), "jumlah": $("#jumlah").val(),
-      "bank": $("#bank").val()},
+      "no_bukti": a, "jatuh_tempo": b, "jumlah": c, "bank": d},
        success: function(data) {
        $("div#ack").html(data);
-       $("#table_content").load( "<?php echo base_url('GiroCair')?> #table_content" );
+       // $("#table_content").load( "<?php echo base_url('GiroCair')?> #table_content" );
        $("#total").load( "<?php echo base_url('GiroCair')?> #total" );
        $("#idLooping").load( "<?php echo base_url('GiroCair')?> #idLooping" );
        }
       });
 
-      j=Number(document.forms['tabelInput']['nomor'].value)+1;
+      // j=Number(document.forms['tabelInput']['nomor'].value)+1;
 
-      for(i=1; i<=j; i++) {
-        loopingNo.value = i;
-      }
+      // for(i=1; i<=j; i++) {
+      //   loopingNo.value = i;
+      // }
 
       return false;
-}
+
+      document.getElementById("formGiro").submit();
+  }
+
 </script>
 
 <label> Total</label>

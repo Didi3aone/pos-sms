@@ -44,9 +44,9 @@
 <script src="<?php echo base_url(); ?>assets/plugins/chartjs/Chart.min.js"></script>
 <script>
   //data posisi
-  var pieChartCanvas = $("#data-posisi").get(0).getContext("2d");
+  var pieChartCanvas = $("#data-gudang").get(0).getContext("2d");
   var pieChart = new Chart(pieChartCanvas);
-  var PieData = <?php echo $data_posisi; ?>;
+  var PieData = <?php echo $data_gudang; ?>;
 
   var pieOptions = {
     segmentShowStroke: true,

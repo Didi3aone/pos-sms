@@ -18,4 +18,11 @@ class M_supplier extends CI_Model {
 		return $data->result();
 	}
 
+	public function last_record()
+	{
+		$query ="SELECT * FROM supplier ORDER BY Kode DESC limit 1";
+		$res = $this->db->query($query);
+		return $res->result();
+	}
+
 }
